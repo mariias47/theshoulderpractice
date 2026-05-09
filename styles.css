@@ -139,15 +139,9 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 .nav-logo-wrap { display: flex; flex-shrink: 0; }
 .nav-logo      { height: 25px; width: auto; display: block; }
 
-/* Index homepage: transparent navbar over dark hero → invert logo to near-white */
+/* Transparent navbar over dark hero (index homepage only) — match white nav links */
 body:not(.about-page):not(.locations-page):not(.contact-page) .navbar:not(.scrolled) .nav-logo {
   filter: brightness(0) invert(1);
-}
-
-/* OS dark mode: invert all logos to near-white (#FBFAF8) */
-@media (prefers-color-scheme: dark) {
-  .nav-logo    { filter: brightness(0) invert(1); }
-  .footer-logo { filter: brightness(0) invert(1); }
 }
 
 /* Links */
