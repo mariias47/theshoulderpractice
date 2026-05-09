@@ -137,7 +137,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 
 /* Logo swap */
 .nav-logo-wrap { display: flex; flex-shrink: 0; }
-.nav-logo      { height: 26px; width: auto; }
+.nav-logo      { height: 60px; width: auto; }
 .logo-dark     { display: none; }
 .navbar.scrolled .logo-light { display: none; }
 .navbar.scrolled .logo-dark  { display: block; }
@@ -772,7 +772,7 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 }
 
 .footer-logo-col { display: flex; flex-direction: column; gap: 28px; }
-.footer-logo     { height: 26px; width: auto; }
+.footer-logo     { height: 60px; width: auto; }
 
 .socials { display: flex; gap: 20px; align-items: center; }
 .socials a { display: flex; transition: opacity 0.2s, transform 0.2s; }
@@ -1242,7 +1242,7 @@ h3.heading-blur-in.visible {
 }
 
 .footer-dark .footer-logo-col { display: flex; flex-direction: column; gap: 28px; }
-.footer-dark .footer-logo     { height: 26px; width: auto; }
+.footer-dark .footer-logo     { height: 60px; width: auto; }
 
 .footer-dark .socials a { display: flex; transition: opacity 0.2s, transform 0.2s; }
 .footer-dark .socials a:hover { opacity: 0.55; transform: translateY(-2px); }
