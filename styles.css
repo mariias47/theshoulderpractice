@@ -883,6 +883,14 @@ h3.heading-blur-in.visible {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: background 0.22s;
+}
+
+.bio-close:hover {
+  background: #292F36;
+}
+.bio-close:hover svg path {
+  stroke: #FBFAF8;
 }
 
 .bio-name {
