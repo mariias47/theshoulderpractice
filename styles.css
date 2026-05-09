@@ -135,12 +135,20 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
   gap: 24px;
 }
 
-/* Logo swap */
+/* Logo */
 .nav-logo-wrap { display: flex; flex-shrink: 0; }
-.nav-logo      { height: 60px; width: auto; }
-.logo-dark     { display: none; }
-.navbar.scrolled .logo-light { display: none; }
-.navbar.scrolled .logo-dark  { display: block; }
+.nav-logo      { height: 25px; width: auto; display: block; }
+
+/* Index homepage: transparent navbar over dark hero → invert logo to near-white */
+body:not(.about-page):not(.locations-page):not(.contact-page) .navbar:not(.scrolled) .nav-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* OS dark mode: invert all logos to near-white (#FBFAF8) */
+@media (prefers-color-scheme: dark) {
+  .nav-logo    { filter: brightness(0) invert(1); }
+  .footer-logo { filter: brightness(0) invert(1); }
+}
 
 /* Links */
 .nav-links {
@@ -772,7 +780,11 @@ button { font-family: var(--sans); cursor: pointer; border: none; background: no
 }
 
 .footer-logo-col { display: flex; flex-direction: column; gap: 28px; }
-.footer-logo     { height: 60px; width: auto; }
+.footer-logo     { height: 25px; width: auto; display: block; }
+
+/* Dark-background footers: invert logo to near-white */
+.footer-dark     .footer-logo { filter: brightness(0) invert(1); }
+.contact-footer  .footer-logo { filter: brightness(0) invert(1); }
 
 .socials { display: flex; gap: 20px; align-items: center; }
 .socials a { display: flex; transition: opacity 0.2s, transform 0.2s; }
@@ -1072,8 +1084,6 @@ h3.heading-blur-in.visible {
 /* Always-solid background on about page; box-shadow appears only on scroll via .scrolled */
 .about-page .navbar { background: var(--bg); }
 .about-page .navbar .nav-links a { color: var(--dark); }
-.about-page .logo-dark  { display: block; }
-.about-page .logo-light { display: none; }
 
 
 /* ── Intro ─────────────────────────────────────────────────── */
@@ -1242,7 +1252,7 @@ h3.heading-blur-in.visible {
 }
 
 .footer-dark .footer-logo-col { display: flex; flex-direction: column; gap: 28px; }
-.footer-dark .footer-logo     { height: 60px; width: auto; }
+.footer-dark .footer-logo     { height: 25px; width: auto; }
 
 .footer-dark .socials a { display: flex; transition: opacity 0.2s, transform 0.2s; }
 .footer-dark .socials a:hover { opacity: 0.55; transform: translateY(-2px); }
@@ -1307,8 +1317,6 @@ h3.heading-blur-in.visible {
 .locations-page .navbar { background: transparent; }
 .locations-page .navbar.scrolled { background: var(--bg); box-shadow: 0 1px 0 rgba(0,0,0,0.07); }
 .locations-page .navbar .nav-links a { color: var(--dark); }
-.locations-page .logo-dark  { display: block; }
-.locations-page .logo-light { display: none; }
 .locations-page .nav-hamburger span { background: var(--dark); }
 
 /* ── Page hero ──────────────────────────────────────────────── */
@@ -1508,8 +1516,6 @@ body.contact-page {
 .contact-page .navbar { background: transparent; }
 .contact-page .navbar.scrolled { background: var(--bg); box-shadow: 0 1px 0 rgba(0,0,0,0.07); }
 .contact-page .navbar .nav-links a { color: var(--dark); }
-.contact-page .logo-dark  { display: block; }
-.contact-page .logo-light { display: none; }
 .contact-page .nav-hamburger span { background: var(--dark); }
 
 /* Page layout wrapper — transparent so body bg shows through */
