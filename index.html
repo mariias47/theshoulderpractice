@@ -22,7 +22,10 @@
       </button>
       <div class="nav-links" id="nav-links">
         <a href="about.html">About</a>
-        <a href="locations.html">Locations</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports.html">Sports</a>
+        <a href="patient-journey.html">Patient journey</a>
+        <a href="insurance.html">Fees</a>
         <a href="contact.html">Contact</a>
       </div>
       <button class="btn-dark nav-cta">Book an appointment</button>
@@ -49,21 +52,13 @@
 
     <section class="stats-section scroll-reveal">
       <div class="stats-block">
-        <h2>Treating patients since 2017</h2>
-        <div class="stats-grid">
-          <div class="stat">
-            <span class="stat-n" data-count="2000" data-suffix="+">2,000+</span>
-            <span class="stat-l">Procedures performed</span>
-          </div>
-          <div class="stat">
-            <span class="stat-n" data-count="98" data-suffix="%">98%</span>
-            <span class="stat-l">Patient satisfaction</span>
-          </div>
-          <div class="stat">
-            <span class="stat-n" data-count="15" data-suffix="+">15+</span>
-            <span class="stat-l stat-l--nowrap">Years of Specialist Experience</span>
-          </div>
-        </div>
+        <ul class="stat-statements">
+          <li>Over 25 years at the forefront of upper limb surgery</li>
+          <li>Hundreds of procedures performed each year</li>
+          <li>A team trained by one of the UK's most experienced upper limb surgeons</li>
+          <li>Trusted by professional athletes, performers and patients referred from across the world</li>
+          <li>98% patient satisfaction — verified by Doctify</li>
+        </ul>
       </div>
       <div class="services-block">
         <div class="divider"></div>
@@ -115,10 +110,12 @@
     </div>
   </section>
 
-  <!-- TEAM -->
+  <!-- PRACTICE INTRO + TEAM -->
   <section class="carousel-section scroll-reveal">
-    <div class="carousel-header section-padded">
-      <h2 class="section-heading">Meet our team of professionals</h2>
+    <div class="practice-intro">
+      <h2 class="section-heading">Built on decades of excellence</h2>
+      <p>The Shoulder Practice was founded by Carlos Cobiella, Consultant Orthopaedic Surgeon at University College Hospital London, whose career in upper limb surgery spans more than 25 years. Over that time he has treated professional athletes, performers and patients referred from across the world — and trained a new generation of upper limb surgeons to the same standard.</p>
+      <p>Every surgeon who joins The Shoulder Practice is selected, mentored and developed by Mr Cobiella personally. The result is a team that thinks and operates as one — rigorous, unhurried, and committed to outcomes that last.</p>
     </div>
     <div class="carousel-clip" id="team-clip">
       <div class="carousel-track" id="team-track">
@@ -134,22 +131,12 @@
         </div>
         <div class="team-card">
           <div class="team-photo">
-            <img src="images/doctor2.png" alt="Anna Bridgens">
-          </div>
-          <div class="team-info">
-            <p class="team-name">Anna Bridgens</p>
-            <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Hampshire Hospitals NHS Trust</p></div>
-            <button class="btn-outline" data-doctor="2">Read bio</button>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-photo">
             <img src="images/doctor3.png" alt="Simon Lambert">
           </div>
           <div class="team-info">
             <p class="team-name">Simon Lambert</p>
             <div><p class="team-title">Consultant Orthopaedic &amp; Elbow Surgeon</p><p class="team-hosp">University College Hospitals London</p></div>
-            <button class="btn-outline" data-doctor="3">Read bio</button>
+            <button class="btn-outline" data-doctor="2">Read bio</button>
           </div>
         </div>
         <div class="team-card">
@@ -159,7 +146,7 @@
           <div class="team-info">
             <p class="team-name">Jae Rhee</p>
             <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Princess Royal Hospital, Shrewsbury</p></div>
-            <button class="btn-outline" data-doctor="4">Read bio</button>
+            <button class="btn-outline" data-doctor="3">Read bio</button>
           </div>
         </div>
         <div class="team-card">
@@ -169,9 +156,10 @@
           <div class="team-info">
             <p class="team-name">Dimitrios Karadaglis</p>
             <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Queen Elizabeth Hospital, London</p></div>
-            <button class="btn-outline" data-doctor="5">Read bio</button>
+            <button class="btn-outline" data-doctor="4">Read bio</button>
           </div>
         </div>
+        <!-- PLACEHOLDER: Additional surgeon bios to be added by practice owner -->
       </div>
     </div>
     <div class="carousel-controls">
@@ -245,20 +233,6 @@
             <p class="loc-addr">Chelsea Bridge Road<br>London, SW1W 8RH</p>
           </div>
         </div>
-        <div class="loc-card">
-          <img src="images/location7.png" alt="BMI Sarum Road Hospital">
-          <div class="loc-overlay">
-            <p class="loc-name">BMI Sarum Road Hospital</p>
-            <p class="loc-addr">Sarum Road<br>Winchester, Hants, SO22 5HA</p>
-          </div>
-        </div>
-        <div class="loc-card">
-          <img src="images/location8.png" alt="The Candover Clinic">
-          <div class="loc-overlay">
-            <p class="loc-name">The Candover Clinic</p>
-            <p class="loc-addr">Aldermaston Road<br>Basingstoke, Hants, RG24 9NA</p>
-          </div>
-        </div>
       </div>
     </div>
     <div class="carousel-controls">
@@ -275,10 +249,11 @@
   <section class="featured scroll-reveal">
     <h2 class="section-heading center" style="padding: 0 var(--px)">Featured in</h2>
     <div class="featured-logos">
+      <span class="featured-logo-text">Tatler</span>
+      <img src="logos/metro.png" alt="Metro">
       <img src="logos/topsante.png" alt="Top Santé">
       <img src="logos/livescience.png" alt="Live Science">
       <img src="logos/womentalking.png" alt="Women Talking">
-      <img src="logos/metro.png" alt="Metro">
       <img src="logos/lifemagazine.png" alt="Life Magazine">
     </div>
   </section>
@@ -297,19 +272,21 @@
           <a href="#" aria-label="LinkedIn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="#292f36" stroke-width="1.5" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="#292f36" stroke-width="1.5"/></svg>
           </a>
-          <a href="#" aria-label="Facebook">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="#292f36" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </a>
         </div>
       </div>
       <div class="footer-col">
-        <p class="footer-heading">Company</p>
+        <p class="footer-heading">Pages</p>
         <a href="about.html">About</a>
-        <a href="locations.html">Locations</a>
-        <a href="contact.html">Contact us</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports.html">Sports &amp; high performance</a>
+        <a href="academic.html">Academic &amp; research</a>
+        <a href="fellowship.html">Fellowship training</a>
+        <a href="patient-journey.html">Patient journey</a>
+        <a href="insurance.html">Insurance &amp; fees</a>
+        <a href="contact.html">Contact</a>
       </div>
       <div class="footer-col">
-        <p class="footer-heading">Useful Links</p>
+        <p class="footer-heading">Useful links</p>
         <a href="#">LSM</a>
         <a href="#">Privacy Policy</a>
       </div>
@@ -332,10 +309,11 @@
       </button>
       <h2 class="bio-name" id="bio-name"></h2>
       <p class="bio-sub" id="bio-sub"></p>
-      <p class="bio-para" id="bio-para"></p>
-      <ul class="bio-list" id="bio-list"></ul>
+      <div class="bio-content" id="bio-content"></div>
     </div>
   </div>
+
+  <!-- PLACEHOLDER: Video content section (practice introduction ~2–3 min, condition explanations ~90 sec, patient journey walkthrough ~2 min) -->
 
   <script src="script.js"></script>
 </body>

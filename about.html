@@ -21,8 +21,11 @@
         <span></span><span></span><span></span>
       </button>
       <div class="nav-links" id="nav-links">
-        <a href="about.html">About</a>
-        <a href="locations.html">Locations</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports.html">Sports</a>
+        <a href="patient-journey.html">Patient journey</a>
+        <a href="insurance.html">Fees</a>
         <a href="contact.html">Contact</a>
       </div>
       <button class="btn-dark nav-cta">Book an appointment</button>
@@ -31,14 +34,29 @@
 
   <!-- INTRO SECTION -->
   <section class="about-intro">
-    <h1 class="about-heading">Exceptional upper limb care, right from the start</h1>
+    <h1 class="about-heading">Thirty years in the making</h1>
     <div class="about-grid">
       <img src="images/surgery.png" alt="Orthopaedic surgery" class="about-img about-img--surgery scroll-reveal">
-      <p class="about-body about-para-founded scroll-reveal">Founded in 2017, The Shoulder Practice was built with a single purpose: to offer world-class diagnosis, treatment and research for injuries and conditions of the upper body – from the fingertips to the shoulder joint.</p>
-      <p class="about-body about-para-network scroll-reveal">We bring together an expert network of surgeons, radiologists, anaesthetists and physiotherapists, giving every patient access to a truly comprehensive, joined-up service. Whether you're navigating a complex shoulder condition, a sports injury, or considering joint replacement, you are in the most capable hands.</p>
+      <div class="about-para-founded scroll-reveal">
+        <p class="about-body">The Shoulder Practice was formally established in 2017. But its foundations go back considerably further.</p>
+        <p class="about-body" style="margin-top: 20px;">For over 25 years, Mr Carlos Cobiella built one of the most respected upper limb practices in the United Kingdom — treating complex cases, training surgeons, and developing a reputation that drew patients from across the country and beyond. The Shoulder Practice is the formal expression of everything that practice stood for: a named home for a standard of care that had long existed, now with the structure and team to deliver it at scale.</p>
+      </div>
+      <div class="about-para-network scroll-reveal">
+        <h2 class="about-sub-heading">What makes us different</h2>
+        <p class="about-body">Private upper limb care in London is not in short supply. What is rarer is a practice where the clinical culture has been shaped by a single, sustained philosophy — one built over 25 years of complex operative work, difficult referrals and the kind of outcomes that generate word-of-mouth reputation rather than marketing spend.</p>
+        <p class="about-body" style="margin-top: 16px;">We are not a network. We are not a referral platform. Every surgeon associated with The Shoulder Practice has been personally selected and, in most cases, trained within the practice. The standard you receive from any member of this team reflects the same values — clinical rigour, honest communication, and a commitment to getting the outcome right first time.</p>
+      </div>
       <img src="images/lab.png" alt="Medical laboratory" class="about-img about-img--lab scroll-reveal">
     </div>
   </section>
+
+  <!-- THE PATIENT AT THE CENTRE -->
+  <div class="about-extended">
+    <div class="about-text-block scroll-reveal">
+      <h2 class="about-sub-heading">The patient at the centre</h2>
+      <p>We see patients who have been told nothing is wrong when something clearly is. Patients who have had surgery elsewhere that hasn't worked. Patients who are professional athletes with a career on the line, or individuals in their sixties who simply want to lift their grandchild without pain. The complexity of the case doesn't change the approach: a thorough assessment, a straight answer, and a treatment plan that is right for that person — not the most convenient or most profitable one.</p>
+    </div>
+  </div>
 
   <!-- SWIMMING IMAGE -->
   <div class="about-swimming scroll-reveal">
@@ -53,30 +71,90 @@
         <img src="icons/star.svg" alt="" class="value-icon">
         <div class="value-text">
           <p class="value-title">Clinical excellence</p>
-          <p class="value-desc">Rigorous, evidence-based care with access to the latest surgical techniques and research.</p>
+          <p class="value-desc">We operate at the top of our specialty. Our surgeons hold or have held consultant posts at University College London Hospital, leading London private hospitals and major Teaching Hospital NHS trusts. We maintain academic engagement with the latest research, techniques and implants — and we are honest when evidence doesn't yet support a new approach.</p>
         </div>
       </div>
       <div class="value-card">
         <img src="icons/clock.svg" alt="" class="value-icon">
         <div class="value-text">
-          <p class="value-title">Your time, respected</p>
-          <p class="value-desc">Prompt appointments, clear communication, and a care pathway designed around you.</p>
+          <p class="value-title">Unhurried judgement</p>
+          <p class="value-desc">The first consultation is never a formality. We take the time to examine properly, review imaging carefully, and explain clearly. Patients leave knowing what is wrong, what their options are, and what we recommend — and why.</p>
         </div>
       </div>
       <div class="value-card">
         <img src="icons/Share-Heart.svg" alt="" class="value-icon">
         <div class="value-text">
-          <p class="value-title">Total transparency</p>
-          <p class="value-desc">Honest, straightforward guidance so you can make truly informed decisions about your care.</p>
+          <p class="value-title">Honest guidance</p>
+          <p class="value-desc">We will tell you when surgery is not the answer. We will tell you when previous treatment has left a problem that can be corrected. We will tell you what realistic recovery looks like. That honesty is not a courtesy — it is the foundation of good clinical care.</p>
         </div>
       </div>
       <div class="value-card">
         <img src="icons/profile.svg" alt="" class="value-icon">
         <div class="value-text">
-          <p class="value-title">Compassionate care</p>
-          <p class="value-desc">We treat every patient as an individual – with warmth, attention and genuine commitment.</p>
+          <p class="value-title">Continuity of care</p>
+          <p class="value-desc">From first consultation through surgery, rehabilitation and follow-up, you are looked after by people who know your case. You will not be passed between strangers. Your surgeon knows your name before you walk in.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- TEAM CAROUSEL -->
+  <section class="carousel-section scroll-reveal">
+    <div class="practice-intro">
+      <h2 class="section-heading">Meet our team</h2>
+    </div>
+    <div class="carousel-clip" id="team-clip">
+      <div class="carousel-track" id="team-track">
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="images/doctor1.png" alt="Carlos Cobiella">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Carlos Cobiella</p>
+            <div><p class="team-title">Consultant Orthopaedic Surgeon</p><p class="team-hosp">University College Hospitals, London</p></div>
+            <button class="btn-outline" data-doctor="1">Read bio</button>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="images/doctor3.png" alt="Simon Lambert">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Simon Lambert</p>
+            <div><p class="team-title">Consultant Orthopaedic &amp; Elbow Surgeon</p><p class="team-hosp">University College Hospitals London</p></div>
+            <button class="btn-outline" data-doctor="2">Read bio</button>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="images/doctor4.png" alt="Jae Rhee">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Jae Rhee</p>
+            <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Princess Royal Hospital, Shrewsbury</p></div>
+            <button class="btn-outline" data-doctor="3">Read bio</button>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="images/doctor5.png" alt="Dimitrios Karadaglis">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Dimitrios Karadaglis</p>
+            <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Queen Elizabeth Hospital, London</p></div>
+            <button class="btn-outline" data-doctor="4">Read bio</button>
+          </div>
+        </div>
+        <!-- PLACEHOLDER: Additional surgeon bios to be added by practice owner -->
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="c-btn c-prev" id="team-prev" aria-label="Previous">
+        <img src="icons/arrow.svg" alt="">
+      </button>
+      <button class="c-btn c-next" id="team-next" aria-label="Next">
+        <img src="icons/arrow.svg" alt="">
+      </button>
     </div>
   </section>
 
@@ -107,21 +185,21 @@
               <circle cx="4" cy="4" r="2" stroke="white" stroke-width="1.5"/>
             </svg>
           </a>
-          <a href="#" aria-label="Facebook">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
-            </svg>
-          </a>
         </div>
       </div>
       <div class="footer-dark-col">
-        <p class="footer-dark-heading">Company</p>
+        <p class="footer-dark-heading">Pages</p>
         <a href="about.html">About</a>
-        <a href="locations.html">Locations</a>
-        <a href="contact.html">Contact us</a>
+        <a href="conditions.html">Conditions</a>
+        <a href="sports.html">Sports &amp; high performance</a>
+        <a href="academic.html">Academic &amp; research</a>
+        <a href="fellowship.html">Fellowship training</a>
+        <a href="patient-journey.html">Patient journey</a>
+        <a href="insurance.html">Insurance &amp; fees</a>
+        <a href="contact.html">Contact</a>
       </div>
       <div class="footer-dark-col">
-        <p class="footer-dark-heading">Useful Links</p>
+        <p class="footer-dark-heading">Useful links</p>
         <a href="#">LSM</a>
         <a href="#">Privacy Policy</a>
       </div>
@@ -133,6 +211,20 @@
       </div>
     </div>
   </footer>
+
+  <!-- BIO MODAL -->
+  <div class="bio-backdrop" id="bio-backdrop" aria-hidden="true">
+    <div class="bio-card" role="dialog" aria-modal="true" aria-labelledby="bio-name">
+      <button class="bio-close" id="bio-close" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="#292f36" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <h2 class="bio-name" id="bio-name"></h2>
+      <p class="bio-sub" id="bio-sub"></p>
+      <div class="bio-content" id="bio-content"></div>
+    </div>
+  </div>
 
   <script src="about.js"></script>
 </body>

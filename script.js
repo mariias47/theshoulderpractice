@@ -42,31 +42,6 @@ if (hamburger && navLinks) {
 }
 
 
-/* ── STAT COUNTER ──────────────────────────────────────────── */
-function animateCounter(el) {
-  const target   = parseInt(el.dataset.count, 10);
-  const suffix   = el.dataset.suffix || '';
-  const duration = 1600;
-  const start    = performance.now();
-
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
-  // Format with comma for thousands (2000 → 2,000)
-  function fmt(n) {
-    return n >= 1000 ? n.toLocaleString() : String(n);
-  }
-
-  function tick(now) {
-    const progress = Math.min((now - start) / duration, 1);
-    const value    = Math.round(easeOutCubic(progress) * target);
-    el.textContent = fmt(value) + suffix;
-    if (progress < 1) requestAnimationFrame(tick);
-  }
-
-  requestAnimationFrame(tick);
-}
-
-
 /* ── EXPERTISE TABS ────────────────────────────────────────── */
 const expertiseData = {
   shoulder: {
@@ -152,7 +127,6 @@ function setupCarousel(trackId, clipId, prevId, nextId) {
   window.addEventListener('resize', updateButtons, { passive: true });
 
   // Prev is always disabled at start (scrollLeft = 0).
-  // Use rAF so scrollWidth is computed before checking next button state.
   if (prev) prev.disabled = true;
   requestAnimationFrame(updateButtons);
 
@@ -161,7 +135,7 @@ function setupCarousel(trackId, clipId, prevId, nextId) {
   let startX = 0, startScroll = 0, dragging = false;
 
   clip.addEventListener('pointerdown', e => {
-    if (e.target.closest('button, a')) return; // let interactive elements handle their own clicks
+    if (e.target.closest('button, a')) return;
     dragging    = true;
     startX      = e.clientX;
     startScroll = track.scrollLeft;
@@ -191,9 +165,7 @@ setupCarousel('team-track',      'team-clip', 'team-prev', 'team-next');
 setupCarousel('locations-track', 'loc-clip',  'loc-prev',  'loc-next');
 
 
-/* ── SCROLL REVEAL + COUNTERS ──────────────────────────────── */
-let countersRan = false;
-
+/* ── SCROLL REVEAL ─────────────────────────────────────────── */
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -204,14 +176,6 @@ const revealObs = new IntersectionObserver((entries) => {
     entry.target.querySelectorAll('.service').forEach((svc, i) => {
       setTimeout(() => svc.classList.add('visible'), 80 + i * 120);
     });
-
-    // Animate stat counters once
-    if (!countersRan && entry.target.querySelector('.stat-n')) {
-      countersRan = true;
-      entry.target.querySelectorAll('.stat-n').forEach((el, i) => {
-        setTimeout(() => animateCounter(el), i * 200);
-      });
-    }
 
     revealObs.unobserve(entry.target);
   });
@@ -224,35 +188,31 @@ document.querySelectorAll('.scroll-reveal').forEach(el => revealObs.observe(el))
 const bioData = {
   1: {
     name: 'Mr Carlos Cobiella',
-    sub: 'Consultant Orthopaedic Surgeon, University College Hospitals, London',
-    para: 'Highly experienced consultant specialising in the diagnosis and treatment of shoulder and elbow conditions. He combines advanced surgical expertise with a patient-focused approach, treating everyone from everyday patients to elite athletes.',
-    bullets: [
-      'Specialist in shoulder and elbow conditions, including sports injuries, arthritis, and fractures',
-      'Expert in minimally invasive (keyhole/arthroscopic) surgery',
-      'Trained in Madrid and London, with specialist training at the Royal National Orthopaedic Hospital',
-      'Consultant Orthopaedic Surgeon since 2003; now leads the Upper Limb Service at UCLH',
-      'Head of Upper Limb Section at the Institute of Sport, Exercise and Health, UCL',
-      'Treats elite and professional athletes, including players from Arsenal F.C., Fulham F.C., Saracens F.C., and Harlequins F.C.',
-      'Appointed NFL Upper Limb Surgeon in Europe',
-      'Trusted by high-level performers, including professional musicians and artists',
-      'Actively involved in teaching, training surgeons, and research'
-    ]
+    sub: 'Consultant Orthopaedic Surgeon · Founder, The Shoulder Practice',
+    paras: [
+      'Mr Cobiella has been at the forefront of upper limb surgery in the United Kingdom for over 25 years. Trained at The Royal National Orthopaedic Hospital, he has held Consultant post at University College Hospital London throughout his career, developing a practice recognised for its management of the most complex shoulder, elbow and wrist cases.',
+      'He is regularly referred sportsmen from Premiership football and rugby clubs, Olympic and international level athletes from the English Institute of Sports, UK Athletics and the PGA. He was part of the medical team at the London 2012 Olympics, has served as the NFL\'s Upper Limb Surgeon in Europe for over 14 years and is the shoulder surgeon for the London Underground. Well known musicians and artists, including Oscar winning actors and film makers have trusted his professional ability. He regularly sees individuals referred after failed surgery elsewhere — many travelling internationally for his care. He is known as much for his judgement about when not to operate as for his technical skill when surgery is the right answer.',
+      'Beyond his clinical work, Mr Cobiella has dedicated significant effort to training the next generation of upper limb surgeons. He is part of international study groups that are developing innovative techniques for the treatment of instability and rotator cuff disease. He organises the London Shoulder Meeting annually and is a member of faculty in numerous courses in Arthroscopic and Sports Injury Surgery, both national and international. Several of his former Fellows now hold consultant posts across the United Kingdom.',
+      'The Shoulder Practice was founded as a formal expression of that philosophy: a place where exceptional care and exceptional training exist side by side.'
+    ],
+    interests: [
+      'Shoulder and elbow sports injuries',
+      'Rotator cuff disease',
+      'Shoulder instability and dislocations',
+      'Frozen shoulder',
+      'Tennis and golfer\'s elbow',
+      'Upper limb fractures',
+      'Arthritis'
+    ],
+    appointments: [
+      'Hospital of St John & St Elizabeth',
+      'Princess Grace Hospital',
+      'The London Clinic',
+      'ISEH'
+    ],
+    note: 'All major insurers accepted. Please contact the practice for confirmation.'
   },
   2: {
-    name: 'Mr Henry Colaço',
-    sub: 'Consultant Orthopaedic Shoulder & Elbow Surgeon, Hampshire Hospitals NHS Trust',
-    para: 'Mr Colaço is a consultant orthopaedic surgeon specialising in shoulder, elbow, and upper limb conditions. He focuses on delivering personalised care, using the latest techniques to help patients recover quickly and effectively.',
-    bullets: [
-      'Specialist in shoulder, elbow, and upper limb problems, including sports injuries and trauma',
-      'Expert in minimally invasive (keyhole) surgery and advanced techniques for faster recovery',
-      'Trained at leading London hospitals including Guy\'s and St Thomas\' Hospitals and King\'s College Hospital',
-      'Completed advanced fellowships in shoulder, elbow, and complex upper limb surgery',
-      'Treats professional athletes and active individuals, including players from Saracens F.C. and Harlequins F.C.',
-      'Uses modern approaches such as 3D planning and minimally invasive techniques to improve outcomes',
-      'Committed to patient-centred care, offering both surgical and non-surgical treatment options'
-    ]
-  },
-  3: {
     name: 'Mr Simon Lambert',
     sub: 'Consultant Orthopaedic & Elbow Surgeon, University College Hospitals London',
     para: 'Mr Lambert is a highly experienced consultant specialising in complex shoulder and elbow conditions, particularly difficult or previously treated cases. He is known for managing challenging problems and helping patients who require advanced or revision surgery.',
@@ -267,7 +227,7 @@ const bioData = {
       'Actively involved in research, teaching, and improving surgical techniques'
     ]
   },
-  4: {
+  3: {
     name: 'Mr Jae Rhee',
     sub: 'Consultant Orthopaedic Shoulder & Elbow Surgeon, Princess Royal Hospital, Shrewsbury',
     para: 'Mr Rhee is a consultant orthopaedic surgeon specialising in shoulder and upper limb conditions. He focuses on providing high-quality, personalised care using modern techniques to support recovery and return to activity.',
@@ -282,7 +242,7 @@ const bioData = {
       'Committed to tailored, patient-centred care using the latest techniques for optimal recovery'
     ]
   },
-  5: {
+  4: {
     name: 'Mr Dimitrios Karadaglis',
     sub: 'Consultant Orthopaedic Shoulder & Elbow Surgeon, Queen Elizabeth Hospital, London',
     para: 'Mr Karadaglis is a consultant orthopaedic surgeon specialising in shoulder, elbow, and upper limb conditions, with particular expertise in trauma and sports injuries. He focuses on delivering personalised treatment to help patients return to normal activity as quickly as possible.',
@@ -297,22 +257,54 @@ const bioData = {
       'Actively involved in teaching and training surgeons'
     ]
   }
+  /* PLACEHOLDER: Additional surgeon bios to be added by practice owner */
 };
 
 const bioBackdrop = document.getElementById('bio-backdrop');
 const bioClose    = document.getElementById('bio-close');
 const bioName     = document.getElementById('bio-name');
 const bioSub      = document.getElementById('bio-sub');
-const bioPara     = document.getElementById('bio-para');
-const bioList     = document.getElementById('bio-list');
+const bioContent  = document.getElementById('bio-content');
 
 function openBio(id) {
   const d = bioData[id];
   if (!d) return;
+
   bioName.textContent = d.name;
   bioSub.textContent  = d.sub;
-  bioPara.textContent = d.para;
-  bioList.innerHTML   = d.bullets.map(b => `<li>${b}</li>`).join('');
+
+  let html = '';
+
+  // Multiple paragraphs (rich bio) or single paragraph
+  if (d.paras) {
+    html += d.paras.map(p => `<p class="bio-para">${p}</p>`).join('');
+  } else if (d.para) {
+    html += `<p class="bio-para">${d.para}</p>`;
+  }
+
+  // Specialist interests
+  if (d.interests && d.interests.length) {
+    html += `<p class="bio-section-heading">Specialist interests</p>`;
+    html += `<ul class="bio-list">${d.interests.map(i => `<li>${i}</li>`).join('')}</ul>`;
+  }
+
+  // Bullet list (standard bio format)
+  if (d.bullets && d.bullets.length) {
+    html += `<ul class="bio-list">${d.bullets.map(b => `<li>${b}</li>`).join('')}</ul>`;
+  }
+
+  // Appointments
+  if (d.appointments && d.appointments.length) {
+    html += `<p class="bio-section-heading">Appointments</p>`;
+    html += `<ul class="bio-list">${d.appointments.map(a => `<li>${a}</li>`).join('')}</ul>`;
+  }
+
+  // Note (insurers etc.)
+  if (d.note) {
+    html += `<p class="bio-note">${d.note}</p>`;
+  }
+
+  bioContent.innerHTML = html;
   bioBackdrop.setAttribute('aria-hidden', 'false');
   bioBackdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -353,22 +345,3 @@ document.querySelectorAll('h1, h2, h3').forEach(h => {
   h.classList.add('heading-blur-in');
   headingObs.observe(h);
 });
-
-
-/* ── ACTIVE NAV HIGHLIGHT ──────────────────────────────────── */
-const sections  = ['about', 'locations', 'contact'].map(id => document.getElementById(id)).filter(Boolean);
-const navAnchors = document.querySelectorAll('.nav-links a');
-
-if (sections.length && navAnchors.length) {
-  const activeObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      navAnchors.forEach(a => {
-        const match = a.getAttribute('href') === `#${entry.target.id}`;
-        a.style.opacity = match ? '1' : '';
-      });
-    });
-  }, { threshold: 0.35 });
-
-  sections.forEach(s => activeObs.observe(s));
-}
