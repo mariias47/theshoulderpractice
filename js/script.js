@@ -2,12 +2,22 @@
 const navbar = document.getElementById('navbar');
 const hero   = document.querySelector('.hero');
 
+// Bug fix: cache threshold to avoid forced reflow (hero.offsetHeight) on every scroll
+let _navThreshold = hero ? hero.offsetHeight * 0.55 : 300;
+window.addEventListener('resize', () => { _navThreshold = hero ? hero.offsetHeight * 0.55 : 300; }, { passive: true });
+
 function updateNavbar() {
-  const threshold = hero ? hero.offsetHeight * 0.55 : 300;
-  navbar.classList.toggle('scrolled', window.scrollY > threshold);
+  navbar.classList.toggle('scrolled', window.scrollY > _navThreshold);
 }
 
-window.addEventListener('scroll', updateNavbar, { passive: true });
+// Bug fix: throttle scroll handler with requestAnimationFrame to prevent jank
+let _navTicking = false;
+window.addEventListener('scroll', () => {
+  if (!_navTicking) {
+    requestAnimationFrame(() => { updateNavbar(); _navTicking = false; });
+    _navTicking = true;
+  }
+}, { passive: true });
 updateNavbar(); // run on load in case page starts mid-scroll
 
 
@@ -372,3 +382,68 @@ if (sections.length && navAnchors.length) {
 
   sections.forEach(s => activeObs.observe(s));
 }
+
+
+/* ── ON-LOAD VISIBILITY FIX ────────────────────────────────────
+   Bug fix: Elements with opacity:0 (heading-blur-in, scroll-reveal,
+   service cards) start invisible and rely on IntersectionObserver
+   to become visible. But the observer only fires on scroll, so
+   elements already in the viewport on page load stay invisible.
+   Fix: immediately mark any in-viewport elements as visible.
+────────────────────────────────────────────────────────────── */
+(function fixInitialVisibility() {
+  const vh = window.innerHeight;
+
+  function isInView(el) {
+    const r = el.getBoundingClientRect();
+    return r.top < vh && r.bottom > 0;
+  }
+
+  // Make in-viewport elements visible immediately on load
+  document.querySelectorAll(
+    '.heading-blur-in, .scroll-reveal, .service, .value-card'
+  ).forEach(el => {
+    if (isInView(el)) el.classList.add('visible');
+  });
+
+  // Also run on first scroll in case of dynamic layout shifts
+  window.addEventListener('scroll', function onFirstScroll() {
+    document.querySelectorAll(
+      '.heading-blur-in:not(.visible), .scroll-reveal:not(.visible), .service:not(.visible), .value-card:not(.visible)'
+    ).forEach(el => {
+      if (isInView(el)) el.classList.add('visible');
+    });
+    window.removeEventListener('scroll', onFirstScroll);
+  }, { passive: true, once: true });
+})();
+
+/* ── IMPROVED INTERSECTION OBSERVER ───────────────────────────
+   Bug fix: Original observer uses rootMargin '0px 0px -48px 0px'
+   which prevents elements near the bottom edge of the viewport
+   from ever triggering. Replace with a 0px margin observer that
+   runs alongside the original one.
+────────────────────────────────────────────────────────────── */
+(function addImprovedObserver() {
+  const improvedHeadingObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      improvedHeadingObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.05 });
+
+  const improvedRevealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      // Stagger child service cards
+      entry.target.querySelectorAll('.service').forEach((svc, i) => {
+        setTimeout(() => svc.classList.add('visible'), 80 + i * 120);
+      });
+      improvedRevealObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('.heading-blur-in:not(.visible)').forEach(h => improvedHeadingObs.observe(h));
+  document.querySelectorAll('.scroll-reveal:not(.visible)').forEach(el => improvedRevealObs.observe(el));
+})();
