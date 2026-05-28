@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carlos Cobiella - The Shoulder Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bio-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo-wrap">
+        <img class="nav-logo" src="assets/logos/TSP_logo_dark.svg" alt="TSP">
+      </a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="about2.html">About</a>
+        <a href="sports.html">Sports performance</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="btn-dark nav-cta">Book an appointment</button>
+    </div>
+  </nav>
+
+  <!-- BACK BUTTON -->
+  <div class="bio-back-wrap">
+    <button class="bio-back" onclick="history.back()" aria-label="Go back">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="48" height="48" rx="24" fill="#292F36"/>
+        <path d="M34 24H23.6667H14M14 24L19 20M14 24L19 28" stroke="#FBFAF8"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- HERO: PHOTO + BIO -->
+  <main class="bio-main">
+
+    <div class="bio-hero">
+
+      <!-- Left: photo + title + CTA -->
+      <div class="bio-photo-col">
+        <div class="bio-photo">
+          <img src="assets/images/doctor1.png?v=2" alt="Carlos Cobiella">
+        </div>
+        <p class="bio-subtitle">Consultant Orthopaedic Surgeon.<br>Founder, The Shoulder Practice</p>
+        <a href="contact.html" class="btn-dark bio-book">Book an appointment</a>
+      </div>
+
+      <!-- Right: name + body text + divider + meta -->
+      <div class="bio-info-col">
+        <h1 class="bio-name">Carlos Cobiella</h1>
+        <div class="bio-body">
+          <p>Mr Cobiella has been at the forefront of upper limb surgery in the United Kingdom for over 25 years. Trained at The Royal National Orthopaedic Hospital, he has held Consultant post at University College Hospital London throughout his career, developing a practice recognised for its management of the most complex shoulder, elbow and wrist cases.</p>
+          <p>He is regularly referred sportsmen from Premiership football and rugby clubs, Olympic and international level athletes from the English Institute of Sports, UK Athletics and the PGA. He was part of the medical team at the London 2012 Olympics, has served as the NFL's Upper Limb Surgeon in Europe for over 14 years and is the shoulder surgeon for the London Underground. Well known musicians and artists, including Oscar winning actors and film makers have trusted his professional ability. He regularly sees individuals referred after failed surgery elsewhere - many travelling internationally for his care. He is known as much for his judgement about when not to operate as for his technical skill when surgery is the right answer.</p>
+          <p>Beyond his clinical work, Mr Cobiella has dedicated significant effort to training the next generation of upper limb surgeons. He is part of international study groups that are developing innovative techniques for the treatment of instability and rotator cuff disease. He organises the London Shoulder Meeting annually and is a member of faculty in numerous courses in Arthroscopic and Sports Injury Surgery, both national and international. Several of his former Fellows now hold consultant posts across the United Kingdom.</p>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="bio-divider"></div>
+
+        <!-- SPECIALTIES + APPOINTMENTS -->
+        <div class="bio-meta">
+
+          <div class="bio-meta-block">
+            <p class="bio-meta-heading">Specialties</p>
+            <ul class="bio-meta-list">
+              <li>Shoulder and elbow sports injuries</li>
+              <li>Rotator cuff disease</li>
+              <li>Shoulder instability and dislocations</li>
+              <li>Frozen shoulder</li>
+              <li>Tennis and golfer's elbow</li>
+              <li>Upper limb fractures</li>
+              <li>Arthritis</li>
+            </ul>
+          </div>
+
+          <div class="bio-meta-block">
+            <p class="bio-meta-heading">Appointments</p>
+            <ul class="bio-meta-list">
+              <li>Hospital of St John &amp; St Elizabeth</li>
+              <li>Princess Grace Hospital</li>
+              <li>The London Clinic</li>
+              <li>ISEH</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- QUOTE -->
+  <section class="bio-quote scroll-reveal">
+    <div class="bio-quote-inner">
+      <span class="bio-quote-mark" aria-hidden="true">&ldquo;</span>
+      <p class="bio-quote-text">The Shoulder Practice was founded as a formal expression of that philosophy: a place where exceptional care and exceptional training exist side by side.</p>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="about-cta">
+    <div class="about-cta-content scroll-reveal">
+      <h2 class="section-heading">Ready to take the first step?</h2>
+      <button class="btn-dark">Book an appointment</button>
+    </div>
+  </section>
+
+  <!-- DARK FOOTER -->
+  <footer class="footer-dark">
+    <div class="footer-dark-inner">
+      <div class="footer-logo-col">
+        <img src="assets/logos/TSP_logo_dark.svg" alt="TSP" class="footer-logo">
+        <div class="socials">
+          <a href="#" aria-label="Instagram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="1.5"/>
+              <circle cx="12" cy="12" r="4" stroke="white" stroke-width="1.5"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="4" cy="4" r="2" stroke="white" stroke-width="1.5"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-dark-col">
+        <p class="footer-dark-heading">Company</p>
+        <a href="about2.html">About</a>
+        <a href="locations.html">Locations</a>
+        <a href="fellowship.html">Fellowship training</a>
+      </div>
+      <div class="footer-dark-col">
+        <p class="footer-dark-heading">Support</p>
+        <a href="what-to-expect.html">What to expect</a>
+        <a href="sports.html">Sports performance</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-dark-col">
+        <p class="footer-dark-heading">Contact</p>
+        <a href="mailto:pa@theshoulderpractice.com">pa@theshoulderpractice.com</a>
+        <a href="tel:+442034880242">+44 2034 880242</a>
+        <p>Monday to Friday: 8:30-19:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-divider-line"></div>
+      <a href="#" class="footer-privacy">Privacy policy</a>
+    </div>
+  </footer>
+
+  <script src="js/about.js"></script>
+</body>
+</html>

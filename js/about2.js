@@ -1,0 +1,248 @@
+/* ── WMD CARD EXPAND / COLLAPSE ────────────────────────────────── */
+(function () {
+  'use strict';
+
+  var CONTENT_DELAY = 280;  // ms - wait for card to widen before staggering content in
+  var COLLAPSE_WAIT = 180;  // ms - wait for content to fade before shrinking card
+
+  var track = document.querySelector('.wmd-track');
+  if (!track) return;
+
+  var cards = Array.from(track.querySelectorAll('.wmd-card'));
+
+  /* ── Stable collapsed card width from CSS clamp(260px, 27vw, 360px) ── */
+  function collapsedCardWidth() {
+    return Math.min(Math.max(260, window.innerWidth * 0.27), 360);
+  }
+
+  /* ── 2×-2.5× the collapsed width, capped at track inner width ── */
+  function computeExpandedWidth() {
+    var base   = collapsedCardWidth();
+    var target = Math.round(base * 2.3);
+    var style  = window.getComputedStyle(track);
+    var padL   = parseFloat(style.paddingLeft)  || 0;
+    var padR   = parseFloat(style.paddingRight) || 0;
+    var max    = Math.max(track.offsetWidth - padL - padR, 280);
+    return Math.min(target, max);
+  }
+
+  /* ── Expand ─────────────────────────────────────────────────── */
+  function expandCard(card) {
+    // Stable collapsed width - never read from a live DOM measurement that
+    // could be mid-transition due to a sibling still animating.
+    var collapsedW = collapsedCardWidth();
+    var GAP = 20; /* matches track gap in CSS */
+
+    // 1. Lock text column to collapsed content width before the card widens
+    card.style.setProperty('--wmd-text-w', (collapsedW - 48) + 'px');
+
+    // 2. Compute and apply expanded width
+    var expandedW = computeExpandedWidth();
+    track.style.setProperty('--wmd-expanded-w', expandedW + 'px');
+
+    // 3. Move cards so the expanded card's left edge aligns with the section heading.
+    //    Preceding cards: translateX(-shift) slides them off-screen left (visual only,
+    //    no layout change). The expanded card: margin-left: -shift pulls it left in the
+    //    flex layout so it sits at padL. Cards after it are pushed right naturally. ✓
+    //    The track itself stays full-width - no clipping on the expanded card's right side.
+    var cardIndex = cards.indexOf(card);
+    var shift = cardIndex * (collapsedW + GAP);
+    cards.forEach(function (c, idx) {
+      if (idx < cardIndex) {
+        c.style.setProperty('--card-shift', '-' + shift + 'px');
+      } else {
+        c.style.removeProperty('--card-shift');
+      }
+    });
+    if (shift > 0) {
+      card.style.marginLeft = '-' + shift + 'px';
+    }
+
+    // 4. Brief scale-pulse on click
+    card.classList.add('expanding');
+    setTimeout(function () { card.classList.remove('expanding'); }, 520);
+
+    // 5. Expand - card grows rightward; siblings shift naturally via flex
+    card.classList.add('expanded');
+    card.querySelector('.wmd-toggle').setAttribute('aria-label', 'Close');
+    cards.forEach(function (c) { if (c !== card) c.classList.add('wmd-peek'); });
+
+    // 6. Clip overflow so pushed siblings are hidden
+    track.classList.add('has-expanded');
+
+    // 7. Stagger content in after card has widened
+    setTimeout(function () { card.classList.add('content-visible'); }, CONTENT_DELAY);
+  }
+
+  /* ── Collapse ───────────────────────────────────────────────── */
+  function collapseCard(card) {
+    card.classList.remove('content-visible');
+    card.classList.add('collapsing');
+
+    setTimeout(function () {
+      card.classList.remove('expanded', 'collapsing');
+      card.querySelector('.wmd-toggle').setAttribute('aria-label', 'Expand');
+      cards.forEach(function (c) {
+        c.classList.remove('wmd-peek');
+        c.style.removeProperty('--card-shift'); /* animate preceding cards back */
+      });
+      card.style.removeProperty('margin-left'); /* animate expanded card back */
+      track.classList.remove('has-expanded');
+      track.style.removeProperty('--wmd-expanded-w');
+      setTimeout(function () { card.style.removeProperty('--wmd-text-w'); }, 480);
+    }, COLLAPSE_WAIT);
+  }
+
+  /* ── Wire up buttons ────────────────────────────────────────── */
+  var pendingExpand = null; // track the one in-flight delayed expansion
+
+  cards.forEach(function (card) {
+    var btn = card.querySelector('.wmd-toggle');
+    if (!btn) return;
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      // Always cancel any previously queued expand so rapid clicks
+      // never stack up multiple expansions.
+      if (pendingExpand !== null) {
+        clearTimeout(pendingExpand);
+        pendingExpand = null;
+      }
+
+      if (card.classList.contains('expanded')) {
+        collapseCard(card);
+        return;
+      }
+
+      var current = track.querySelector('.wmd-card.expanded');
+      if (current) {
+        collapseCard(current);
+        pendingExpand = setTimeout(function () {
+          pendingExpand = null;
+          expandCard(card);
+        }, COLLAPSE_WAIT + 40);
+      } else {
+        expandCard(card);
+      }
+    });
+  });
+
+  /* ── Re-compute width on resize ─────────────────────────────── */
+  window.addEventListener('resize', function () {
+    var expandedCard = track.querySelector('.wmd-card.expanded');
+    if (expandedCard) {
+      track.style.setProperty('--wmd-expanded-w', computeExpandedWidth(expandedCard) + 'px');
+    }
+  });
+
+})();
+
+
+/* ── WMD TRACK DRAG SCROLL (collapsed state only) ──────────────── */
+(function () {
+  'use strict';
+
+  var track = document.querySelector('.wmd-track');
+  if (!track) return;
+
+  var isDragging = false, startX = 0, scrollLeft = 0;
+
+  track.addEventListener('mousedown', function (e) {
+    if (track.classList.contains('has-expanded')) return;
+    isDragging = true;
+    startX     = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    track.classList.add('grabbing');
+  });
+
+  ['mouseleave', 'mouseup'].forEach(function (evt) {
+    track.addEventListener(evt, function () {
+      isDragging = false;
+      track.classList.remove('grabbing');
+    });
+  });
+
+  track.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.4;
+  });
+
+  /* Touch swipe */
+  var touchStartX = 0, touchScrollLeft = 0;
+  track.addEventListener('touchstart', function (e) {
+    touchStartX     = e.touches[0].clientX;
+    touchScrollLeft = track.scrollLeft;
+  }, { passive: true });
+
+  track.addEventListener('touchmove', function (e) {
+    if (track.classList.contains('has-expanded')) return;
+    track.scrollLeft = touchScrollLeft + (touchStartX - e.touches[0].clientX);
+  }, { passive: true });
+
+})();
+
+
+/* ── TEAM CAROUSEL ─────────────────────────────────────────────── */
+(function () {
+  'use strict';
+
+  const clip  = document.getElementById('team-clip');
+  const track = document.getElementById('team-track');
+  const prev  = document.getElementById('team-prev');
+  const next  = document.getElementById('team-next');
+  if (!clip || !track) return;
+
+  function getCardWidth() {
+    const card = track.querySelector('.team-card');
+    return card ? card.offsetWidth + 20 : 300;
+  }
+
+  function updateButtons() {
+    if (!prev || !next) return;
+    prev.disabled = track.scrollLeft <= 1;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+  }
+
+  if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -getCardWidth(), behavior: 'smooth' }));
+  if (next) next.addEventListener('click', () => track.scrollBy({ left:  getCardWidth(), behavior: 'smooth' }));
+
+  track.addEventListener('scroll', updateButtons, { passive: true });
+
+  let isDragging = false, startX = 0, scrollLeft = 0;
+
+  clip.addEventListener('mousedown', e => {
+    isDragging = true;
+    startX     = e.pageX - clip.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    clip.classList.add('grabbing');
+  });
+
+  ['mouseleave', 'mouseup'].forEach(evt =>
+    clip.addEventListener(evt, () => {
+      isDragging = false;
+      clip.classList.remove('grabbing');
+    })
+  );
+
+  clip.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    e.preventDefault();
+    track.scrollLeft = scrollLeft - (e.pageX - clip.offsetLeft - startX) * 1.5;
+  });
+
+  let touchStartX = 0, touchScrollLeft = 0;
+  track.addEventListener('touchstart', e => {
+    touchStartX      = e.touches[0].clientX;
+    touchScrollLeft  = track.scrollLeft;
+  }, { passive: true });
+
+  track.addEventListener('touchmove', e => {
+    track.scrollLeft = touchScrollLeft + (touchStartX - e.touches[0].clientX);
+  }, { passive: true });
+
+  updateButtons();
+})();
+
+

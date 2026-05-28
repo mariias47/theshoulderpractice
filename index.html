@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Shoulder Practice – Orthopaedic Surgery &amp; Treatment</title>
+  <title>The Shoulder Practice - Orthopaedic Surgery &amp; Treatment</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -15,14 +15,14 @@
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-logo-wrap">
-        <img class="nav-logo" src="logos/TSP_logo_dark.svg" alt="TSP">
+        <img class="nav-logo" src="assets/logos/TSP_logo_dark.svg" alt="TSP">
       </a>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <div class="nav-links" id="nav-links">
-        <a href="about.html">About</a>
-        <a href="locations.html">Locations</a>
+        <a href="about2.html">About</a>
+        <a href="sports.html">Sports performance</a>
         <a href="contact.html">Contact</a>
       </div>
       <button class="btn-dark nav-cta">Book an appointment</button>
@@ -33,7 +33,7 @@
   <section class="hero">
     <div class="hero-bg">
       <video id="hero-video" autoplay muted loop playsinline>
-        <source src="videos/video_homepage.mp4" type="video/mp4">
+        <source src="assets/videos/video_homepage.mp4" type="video/mp4">
       </video>
       <div class="hero-overlay"></div>
     </div>
@@ -44,24 +44,27 @@
     </div>
   </section>
 
+  <!-- HOME SHEET (wraps all post-hero content; carries bottom pattern) -->
+  <div class="home-sheet">
+
   <!-- CONTENT CARD -->
   <main class="content-card" id="about">
 
     <section class="stats-section scroll-reveal">
       <div class="stats-block">
-        <h2>Treating patients since 2017</h2>
+        <h2>Built on decades of excellence</h2>
         <div class="stats-grid">
           <div class="stat">
-            <span class="stat-n" data-count="2000" data-suffix="+">2,000+</span>
-            <span class="stat-l">Procedures performed</span>
+            <span class="stat-n" data-count="25" data-suffix="+">25+</span>
+            <span class="stat-l">Years at the forefront of upper limb surgery</span>
+          </div>
+          <div class="stat">
+            <span class="stat-n" data-count="100" data-suffix="+">100+</span>
+            <span class="stat-l">Procedures performed each year</span>
           </div>
           <div class="stat">
             <span class="stat-n" data-count="98" data-suffix="%">98%</span>
-            <span class="stat-l">Patient satisfaction</span>
-          </div>
-          <div class="stat">
-            <span class="stat-n" data-count="15" data-suffix="+">15+</span>
-            <span class="stat-l stat-l--nowrap">Years of Specialist Experience</span>
+            <span class="stat-l">Patient satisfaction - verified by Doctify</span>
           </div>
         </div>
       </div>
@@ -69,24 +72,24 @@
         <div class="divider"></div>
         <div class="services-grid">
           <div class="service">
-            <img src="icons/Stethoscope--Streamline.svg" alt="" class="svc-icon">
-            <h3>Consultations &amp; diagnosis</h3>
-            <p>Your first appointment is a thorough, unhurried assessment – for patients of all ages, including children. We'll examine you, review any previous scans, and arrange specialist MRI or ultrasound imaging if needed. You'll leave with a clear diagnosis and all your options explained.</p>
+            <img src="assets/icons/medal.svg" alt="" class="svc-icon">
+            <h3>25 years of excellence</h3>
+            <p>Mr Cobiella's career in upper limb surgery spans more than a quarter of a century at University College Hospital London.</p>
           </div>
           <div class="service">
-            <img src="icons/Dashboard-Vertical-Pills.svg" alt="" class="svc-icon">
-            <h3>Non-surgical treatments</h3>
-            <p>Surgery is not always the answer. We offer guided physiotherapy, steroid injections for pain and inflammation, and PRP injections for tendon conditions. Many patients achieve full recovery without ever needing an operation.</p>
+            <img src="assets/icons/world.svg" alt="" class="svc-icon">
+            <h3>Patients from across the world</h3>
+            <p>Professional athletes, performers and complex referrals treated from around the globe.</p>
           </div>
           <div class="service">
-            <img src="icons/Flu-Mask.svg" alt="" class="svc-icon">
-            <h3>Surgery</h3>
-            <p>When surgery is the best option, you'll be in the hands of surgeons who perform these procedures at high volume, in world-class facilities – from keyhole arthroscopic surgery to complex joint reconstruction and revision of previous failed surgery.</p>
+            <img src="assets/icons/garduation.svg" alt="" class="svc-icon">
+            <h3>Training a new generation</h3>
+            <p>Every surgeon who joins The Shoulder Practice is personally selected, mentored and developed by Mr Cobiella.</p>
           </div>
           <div class="service">
-            <img src="icons/Share-Heart.svg" alt="" class="svc-icon">
-            <h3>Rehabilitation &amp; physiotherapy</h3>
-            <p>Recovery doesn't end when you leave the operating theatre. We work alongside expert physiotherapists to get you back to full strength and confidence, whether you've had surgery or not.</p>
+            <img src="assets/icons/mountain.svg" alt="" class="svc-icon">
+            <h3>Insurers accepted</h3>
+            <p>The result is a team that thinks and operates as one - rigorous, unhurried, and committed to outcomes that last.</p>
           </div>
         </div>
       </div>
@@ -94,12 +97,81 @@
 
   </main>
 
+  <!-- TEAM -->
+  <section class="carousel-section scroll-reveal">
+    <div class="carousel-header section-padded">
+      <h2 class="section-heading">Meet our team of professionals</h2>
+    </div>
+    <div class="carousel-clip" id="team-clip">
+      <div class="carousel-track" id="team-track">
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="assets/images/doctor1.png?v=2" alt="Carlos Cobiella">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Carlos Cobiella</p>
+            <div><p class="team-title">Consultant Orthopaedic Surgeon</p><p class="team-hosp">University College Hospitals, London</p></div>
+            <a href="bio-cobiella.html" class="btn-outline">Read bio</a>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="assets/images/doctor2.png?v=2" alt="Anna Bridgens">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Anna Bridgens</p>
+            <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Hampshire Hospitals NHS Trust</p></div>
+            <button class="btn-outline" data-doctor="2">Read bio</button>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="assets/images/doctor3.png?v=2" alt="Simon Lambert">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Simon Lambert</p>
+            <div><p class="team-title">Consultant Orthopaedic &amp; Elbow Surgeon</p><p class="team-hosp">University College Hospitals London</p></div>
+            <button class="btn-outline" data-doctor="3">Read bio</button>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="assets/images/doctor4.png?v=2" alt="Jae Rhee">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Jae Rhee</p>
+            <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Princess Royal Hospital, Shrewsbury</p></div>
+            <button class="btn-outline" data-doctor="4">Read bio</button>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="assets/images/doctor5.png?v=2" alt="Dimitrios Karadaglis">
+          </div>
+          <div class="team-info">
+            <p class="team-name">Dimitrios Karadaglis</p>
+            <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Queen Elizabeth Hospital, London</p></div>
+            <button class="btn-outline" data-doctor="5">Read bio</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="c-btn c-prev" id="team-prev" aria-label="Previous">
+        <img src="assets/icons/arrow.svg" alt="">
+      </button>
+      <button class="c-btn c-next" id="team-next" aria-label="Next">
+        <img src="assets/icons/arrow.svg" alt="">
+      </button>
+    </div>
+  </section>
+
   <!-- EXPERTISE -->
   <section class="expertise scroll-reveal">
     <div class="expertise-bg">
-      <img class="exp-bg active" id="exp-shoulder" src="images/shoulder.png" alt="">
-      <img class="exp-bg"        id="exp-arm"      src="images/arm.png" alt="">
-      <img class="exp-bg"        id="exp-wrist"    src="images/wrist.png" alt="">
+      <img class="exp-bg active" id="exp-shoulder" src="assets/images/shoulder.png" alt="">
+      <img class="exp-bg"        id="exp-arm"      src="assets/images/arm.png" alt="">
+      <img class="exp-bg"        id="exp-wrist"    src="assets/images/wrist.png" alt="">
     </div>
     <div class="expertise-content">
       <p class="label">Expertise</p>
@@ -115,158 +187,63 @@
     </div>
   </section>
 
-  <!-- TEAM -->
-  <section class="carousel-section scroll-reveal">
-    <div class="carousel-header section-padded">
-      <h2 class="section-heading">Meet our team of professionals</h2>
-    </div>
-    <div class="carousel-clip" id="team-clip">
-      <div class="carousel-track" id="team-track">
-        <div class="team-card">
-          <div class="team-photo">
-            <img src="images/doctor1.png" alt="Carlos Cobiella">
-          </div>
-          <div class="team-info">
-            <p class="team-name">Carlos Cobiella</p>
-            <div><p class="team-title">Consultant Orthopaedic Surgeon</p><p class="team-hosp">University College Hospitals, London</p></div>
-            <button class="btn-outline" data-doctor="1">Read bio</button>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-photo">
-            <img src="images/doctor2.png" alt="Anna Bridgens">
-          </div>
-          <div class="team-info">
-            <p class="team-name">Anna Bridgens</p>
-            <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Hampshire Hospitals NHS Trust</p></div>
-            <button class="btn-outline" data-doctor="2">Read bio</button>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-photo">
-            <img src="images/doctor3.png" alt="Simon Lambert">
-          </div>
-          <div class="team-info">
-            <p class="team-name">Simon Lambert</p>
-            <div><p class="team-title">Consultant Orthopaedic &amp; Elbow Surgeon</p><p class="team-hosp">University College Hospitals London</p></div>
-            <button class="btn-outline" data-doctor="3">Read bio</button>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-photo">
-            <img src="images/doctor4.png" alt="Jae Rhee">
-          </div>
-          <div class="team-info">
-            <p class="team-name">Jae Rhee</p>
-            <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Princess Royal Hospital, Shrewsbury</p></div>
-            <button class="btn-outline" data-doctor="4">Read bio</button>
-          </div>
-        </div>
-        <div class="team-card">
-          <div class="team-photo">
-            <img src="images/doctor5.png" alt="Dimitrios Karadaglis">
-          </div>
-          <div class="team-info">
-            <p class="team-name">Dimitrios Karadaglis</p>
-            <div><p class="team-title">Consultant Orthopaedic Shoulder &amp; Elbow Surgeon</p><p class="team-hosp">Queen Elizabeth Hospital, London</p></div>
-            <button class="btn-outline" data-doctor="5">Read bio</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-controls">
-      <button class="c-btn c-prev" id="team-prev" aria-label="Previous">
-        <img src="icons/arrow.svg" alt="">
-      </button>
-      <button class="c-btn c-next" id="team-next" aria-label="Next">
-        <img src="icons/arrow.svg" alt="">
-      </button>
-    </div>
-  </section>
-
-  <!-- REVIEW -->
-  <section class="review scroll-reveal">
-    <p class="label">What people say</p>
-    <div class="review-body">
-      <img src="icons/stars.svg" alt="5 stars" class="stars-img">
-      <blockquote>Very quick appointment, assessment and treated very well and thoughtfully throughout by a very kind team.</blockquote>
-      <p class="review-author">– Ana F</p>
-    </div>
-    <a href="https://www.doctify.com/uk/practice/the-shoulder-practice" class="btn-outline-dark">Read reviews</a>
-  </section>
-
   <!-- LOCATIONS -->
   <section class="carousel-section scroll-reveal" id="locations">
     <div class="carousel-header section-padded carousel-header--spaced">
       <h2 class="section-heading">Our locations</h2>
-      <a href="locations.html" class="btn-text">View all</a>
     </div>
     <div class="carousel-clip" id="loc-clip">
       <div class="carousel-track" id="locations-track">
         <div class="loc-card">
-          <img src="images/location1.png" alt="The Princess Grace Hospital">
+          <img src="assets/images/location1.png" alt="The Princess Grace Hospital">
           <div class="loc-overlay">
             <p class="loc-name">The Princess Grace Hospital</p>
-            <p class="loc-addr">30 Devonshire Street<br>London, W1G 6PU</p>
+            <a href="https://www.google.co.uk/maps/place/Devonshire+Hospital,+30+Devonshire+St,+Marylebone,+London+W1G+6PX/@51.5209505,-0.1536207,17z/data=!3m1!4b1!4m5!3m4!1s0x48761ad1ed59bef5:0xa3706fea6bccd6db!8m2!3d51.5209472!4d-0.151432?shorturl=1" target="_blank" class="loc-addr">30 Devonshire Street<br>London, W1G 6PU</a>
           </div>
         </div>
         <div class="loc-card">
-          <img src="images/location2.png" alt="Wellington Hospital">
+          <img src="assets/images/location2.png" alt="Wellington Hospital">
           <div class="loc-overlay">
             <p class="loc-name">Wellington Hospital, Platinum Medical Centre</p>
-            <p class="loc-addr">15 – 17 Lodge Road<br>London, NW8 7JA</p>
+            <a href="https://www.google.com/maps/place/Lodge+Rd,+London+NW8+7JA/@51.5291615,-0.1700757,17z/data=!3m1!4b1!4m5!3m4!1s0x48761ab92186330b:0xa1d2cf1aa47ea7e8!8m2!3d51.5294733!4d-0.1679403?shorturl=1" target="_blank" class="loc-addr">15 - 17 Lodge Road<br>London, NW8 7JA</a>
           </div>
         </div>
         <div class="loc-card">
-          <img src="images/location3.png" alt="ISEH">
+          <img src="assets/images/location3.png" alt="ISEH">
           <div class="loc-overlay">
             <p class="loc-name">ISEH, Specialist Upper Limb Clinic</p>
-            <p class="loc-addr">170 Tottenham Court Road<br>London, W1T 7HA</p>
+            <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x48761b2927bb5d2b:0x67436b11b54bdfc2?source=g.page.share" target="_blank" class="loc-addr">170 Tottenham Court Road<br>London, W1T 7HA</a>
           </div>
         </div>
         <div class="loc-card">
-          <img src="images/location4.png" alt="The London Clinic">
+          <img src="assets/images/location4.png" alt="The London Clinic">
           <div class="loc-overlay">
             <p class="loc-name">The London Clinic</p>
-            <p class="loc-addr">170 Tottenham Court Road<br>London, W1T 7HA</p>
+            <a href="https://www.google.com/maps/place/The+London+Clinic+Consulting+Rooms+at+5+Devonshire+Place/@51.5218312,-0.1496965,15z/data=!4m5!3m4!1s0x0:0x42cf6e7fa746198f!8m2!3d51.5218312!4d-0.1496965?shorturl=1" target="_blank" class="loc-addr">170 Tottenham Court Road<br>London, W1T 7HA</a>
           </div>
         </div>
         <div class="loc-card">
-          <img src="images/location5.png" alt="The Portland Hospital">
+          <img src="assets/images/location5.png" alt="The Portland Hospital">
           <div class="loc-overlay">
             <p class="loc-name">The Portland Hospital</p>
-            <p class="loc-addr">205–209 Great Portland Street<br>London, W1W 5AH</p>
+            <a href="https://www.google.com/maps/place/London+W1W+5AH/@51.5230243,-0.1464657,17z/data=!3m1!4b1!4m5!3m4!1s0x48761ad7047f191f:0x8bf30518b3229a5b!8m2!3d51.5229245!4d-0.144346?sa=X&ved=2ahUKEwiJsvvt--P1AhWSoFwKHVJPCa8Q8gF6BAg3EAE&shorturl=1" target="_blank" class="loc-addr">205-209 Great Portland Street<br>London, W1W 5AH</a>
           </div>
         </div>
         <div class="loc-card">
-          <img src="images/location6.png" alt="The Lister Hospital">
+          <img src="assets/images/location6.png" alt="The Lister Hospital">
           <div class="loc-overlay">
             <p class="loc-name">The Lister Hospital</p>
-            <p class="loc-addr">Chelsea Bridge Road<br>London, SW1W 8RH</p>
-          </div>
-        </div>
-        <div class="loc-card">
-          <img src="images/location7.png" alt="BMI Sarum Road Hospital">
-          <div class="loc-overlay">
-            <p class="loc-name">BMI Sarum Road Hospital</p>
-            <p class="loc-addr">Sarum Road<br>Winchester, Hants, SO22 5HA</p>
-          </div>
-        </div>
-        <div class="loc-card">
-          <img src="images/location8.png" alt="The Candover Clinic">
-          <div class="loc-overlay">
-            <p class="loc-name">The Candover Clinic</p>
-            <p class="loc-addr">Aldermaston Road<br>Basingstoke, Hants, RG24 9NA</p>
+            <a href="https://www.google.com/maps/place/The+Lister+Hospital,+part+of+HCA+Healthcare+UK/@51.486454,-0.150559,15z/data=!4m6!3m5!1s0x4876111e860ecf6d:0x2b6682d7a60e6aad!8m2!3d51.4865996!4d-0.1499646!16s%2Fm%2F05mvm66?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="loc-addr">Chelsea Bridge Road<br>London, SW1W 8RH</a>
           </div>
         </div>
       </div>
     </div>
     <div class="carousel-controls">
       <button class="c-btn c-prev" id="loc-prev" aria-label="Previous">
-        <img src="icons/arrow.svg" alt="">
+        <img src="assets/icons/arrow.svg" alt="">
       </button>
       <button class="c-btn c-next" id="loc-next" aria-label="Next">
-        <img src="icons/arrow.svg" alt="">
+        <img src="assets/icons/arrow.svg" alt="">
       </button>
     </div>
   </section>
@@ -274,53 +251,62 @@
   <!-- FEATURED IN -->
   <section class="featured scroll-reveal">
     <h2 class="section-heading center" style="padding: 0 var(--px)">Featured in</h2>
-    <div class="featured-logos">
-      <img src="logos/topsante.png" alt="Top Santé">
-      <img src="logos/livescience.png" alt="Live Science">
-      <img src="logos/womentalking.png" alt="Women Talking">
-      <img src="logos/metro.png" alt="Metro">
-      <img src="logos/lifemagazine.png" alt="Life Magazine">
+    <div class="featured-track">
+      <div class="featured-logos" aria-hidden="true">
+        <!-- Set 1 -->
+        <img src="assets/logos/topsante.svg" alt="Top Santé">
+        <img src="assets/logos/livescience.png" alt="Live Science">
+        <img src="assets/logos/womentalking.svg" alt="Women Talking">
+        <img src="assets/logos/metro.svg" alt="Metro">
+        <img src="assets/logos/lifemagazine.svg" alt="Life Magazine">
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <img src="assets/logos/topsante.svg" alt="">
+        <img src="assets/logos/livescience.png" alt="">
+        <img src="assets/logos/womentalking.svg" alt="">
+        <img src="assets/logos/metro.svg" alt="">
+        <img src="assets/logos/lifemagazine.svg" alt="">
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer" id="contact">
-    <div class="footer-bg">
-      <img src="images/footer.png" alt="">
-      <div class="footer-gradient"></div>
-    </div>
     <div class="footer-inner">
       <div class="footer-logo-col">
-        <img src="logos/TSP_logo_dark.svg" alt="TSP" class="footer-logo">
+        <img src="assets/logos/TSP_logo_dark.svg" alt="TSP" class="footer-logo">
         <div class="socials">
-          <a href="#" aria-label="Instagram"><img src="logos/instagram.svg" alt=""></a>
+          <a href="#" aria-label="Instagram"><img src="assets/logos/instagram.svg" alt=""></a>
           <a href="#" aria-label="LinkedIn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="#292f36" stroke-width="1.5" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="#292f36" stroke-width="1.5"/></svg>
-          </a>
-          <a href="#" aria-label="Facebook">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="#292f36" stroke-width="1.5" stroke-linejoin="round"/></svg>
           </a>
         </div>
       </div>
       <div class="footer-col">
         <p class="footer-heading">Company</p>
-        <a href="about.html">About</a>
+        <a href="about2.html">About</a>
         <a href="locations.html">Locations</a>
-        <a href="contact.html">Contact us</a>
+        <a href="fellowship.html">Fellowship training</a>
       </div>
       <div class="footer-col">
-        <p class="footer-heading">Useful Links</p>
-        <a href="#">LSM</a>
-        <a href="#">Privacy Policy</a>
+        <p class="footer-heading">Support</p>
+        <a href="what-to-expect.html">What to expect</a>
+        <a href="sports.html">Sports performance</a>
+        <a href="contact.html">Contact</a>
       </div>
       <div class="footer-col">
         <p class="footer-heading">Contact</p>
         <a href="mailto:pa@theshoulderpractice.com">pa@theshoulderpractice.com</a>
         <a href="tel:+442034880242">+44 2034 880242</a>
-        <p>Monday to Friday: 8:30–19:00</p>
+        <p>Monday to Friday: 8:30-19:00</p>
       </div>
     </div>
+    <div class="footer-bottom">
+      <div class="footer-divider-line"></div>
+      <a href="#" class="footer-privacy">Privacy policy</a>
+    </div>
   </footer>
+
+  </div><!-- /.home-sheet -->
 
   <!-- BIO MODAL -->
   <div class="bio-backdrop" id="bio-backdrop" aria-hidden="true">
@@ -337,6 +323,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
