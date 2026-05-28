@@ -345,7 +345,7 @@ body:not(.about-page):not(.about2-page):not(.contact-page):not(.wte-page):not(.c
   margin-bottom: 10px;
 }
 
-.stat-l { font-size: 16px; line-height: 1.2; color: var(--muted); margin-bottom: 0; }
+.stat-l { font-size: 16px; line-height: 1.5; color: var(--text); margin-bottom: 0; }
 .stat-l--nowrap { white-space: nowrap; }
 
 
