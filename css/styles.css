@@ -377,8 +377,8 @@ body:not(.about-page):not(.about2-page):not(.contact-page):not(.wte-page):not(.c
   object-fit: contain;
 }
 
-.service h3 { font-family: var(--serif); font-size: 20px; font-weight: 700; line-height: 1.2; color: var(--dark); }
-.service p  { font-size: 15px; line-height: 1.65; color: var(--muted); }
+.service h3 { font-size: clamp(16px, 1.6vw, 24px); font-weight: 700; line-height: 1.2; color: var(--text); }
+.service p  { font-size: 16px; line-height: 1.5; color: var(--text); }
 
 
 /* ── EXPERTISE ───────────────────────────────────────────────── */
