@@ -1385,6 +1385,11 @@ h3.heading-blur-in.visible {
   -webkit-backdrop-filter: blur(5px);
 }
 
+/* Home page cards have no button — push info to the bottom */
+#locations .loc-card-glass {
+  justify-content: flex-end;
+}
+
 .loc-card-info {
   display: flex;
   flex-direction: column;
