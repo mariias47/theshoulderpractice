@@ -950,8 +950,8 @@ h3.heading-blur-in.visible {
     bottom: 0;
     left: 0;
     right: 0;
-    height: auto;
-    border-radius: 0 0 var(--radius) var(--radius);
+    height: 170px;
+    border-radius: var(--radius);
     background: rgba(255,255,255,0.44);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -983,7 +983,7 @@ h3.heading-blur-in.visible {
 
   /* Carousels - cards fill most of screen so one is clearly visible */
   .team-card { width: calc(100vw - 2 * var(--px) - 20px); height: auto; }
-  .loc-card  { width: calc(100vw - 2 * var(--px) - 20px); height: 340px; }
+  .loc-card  { width: calc(100vw - 2 * var(--px) - 20px); height: 340px; transform: translateZ(0); }
 
   /* Review */
   .review { padding: 80px var(--px); }
@@ -1356,7 +1356,6 @@ h3.heading-blur-in.visible {
   height: 360px;
   border-radius: 14px;
   overflow: hidden;
-  background-image: var(--card-bg);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -1574,7 +1573,7 @@ body.contact-page {
 .contact-field {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 }
 
 .contact-field label {
@@ -1631,14 +1630,14 @@ body.contact-page {
   background: #1b2027;
 }
 
-/* Footer with dark gradient overlay */
+/* Footer with dark gradient overlay - spans entire footer including Privacy Policy */
 .contact-footer {
   position: relative;
   z-index: 1;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.88) 100%);
 }
 
 .contact-footer-inner {
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.88) 100%);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -1688,6 +1687,10 @@ body.contact-page {
 .contact-footer .socials img {
   filter: brightness(10);
 }
+
+/* Privacy Policy row sits inside the dark gradient - give it white colours */
+.contact-footer .footer-divider-line { background: rgba(255,255,255,0.15); }
+.contact-footer .footer-privacy { color: rgba(255,255,255,0.5); }
 
 /* ── Contact responsive ─────────────────────────────────────── */
 @media (max-width: 720px) {
@@ -3111,7 +3114,8 @@ body.conditions-page {
 @media (max-width: 900px) {
   .sph-row { grid-template-columns: 1fr; gap: 36px; }
   .sph-accordion-heading { position: static; }
-  .sph-imgtext-img { min-height: 300px; }
+  .sph-imgtext-img { height: 300px; overflow: hidden; }
+  .sph-imgtext-photo { width: 100%; height: 100%; object-fit: cover; object-position: center; }
   .sph-imgtext-text { padding: clamp(48px, 6vw, 80px) 0; }
 }
 
@@ -3377,6 +3381,115 @@ body.conditions-page {
   background: rgba(0,0,0,0.06);
   cursor: pointer;
 }
+
+/* ── WMD Mobile popup modal ──────────────────────────────────────── */
+.wmd-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: flex-end;
+}
+.wmd-modal.open { display: flex; }
+
+.wmd-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.52);
+}
+
+.wmd-modal-sheet {
+  position: relative;
+  width: 100%;
+  max-height: 85vh;
+  background: #1a1e24;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.wmd-modal-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+}
+
+.wmd-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  color: #fff;
+  font-size: 22px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  line-height: 1;
+}
+
+.wmd-modal-content {
+  position: relative;
+  z-index: 1;
+  padding: 40px 24px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wmd-modal-headline {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #FBFAF8;
+  margin: 0;
+}
+
+.wmd-modal-desc {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #FBFAF8;
+  margin: 0;
+}
+
+.wmd-modal-spotlight {
+  margin-top: 6px;
+  background: rgba(255,255,255,0.13);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wmd-modal-spotlight-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(251,250,248,0.7);
+}
+
+.wmd-modal-spotlight-quote {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: #FBFAF8;
+  margin: 0;
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

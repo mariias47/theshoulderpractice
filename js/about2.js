@@ -93,6 +93,55 @@
     }, COLLAPSE_WAIT);
   }
 
+  /* ── Mobile popup modal ─────────────────────────────────────── */
+  function showWmdModal(card) {
+    var modal = document.getElementById('wmd-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'wmd-modal';
+      modal.className = 'wmd-modal';
+      modal.innerHTML =
+        '<div class="wmd-modal-backdrop"></div>' +
+        '<div class="wmd-modal-sheet">' +
+          '<div class="wmd-modal-bg"></div>' +
+          '<button class="wmd-modal-close" aria-label="Close">×</button>' +
+          '<div class="wmd-modal-content">' +
+            '<h3 class="wmd-modal-headline"></h3>' +
+            '<p class="wmd-modal-desc"></p>' +
+            '<div class="wmd-modal-spotlight">' +
+              '<p class="wmd-modal-spotlight-label"></p>' +
+              '<p class="wmd-modal-spotlight-quote"></p>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      document.body.appendChild(modal);
+      modal.querySelector('.wmd-modal-backdrop').addEventListener('click', hideWmdModal);
+      modal.querySelector('.wmd-modal-close').addEventListener('click', hideWmdModal);
+    }
+
+    var bg = window.getComputedStyle(card).backgroundImage;
+    modal.querySelector('.wmd-modal-bg').style.backgroundImage = bg;
+    var hl  = card.querySelector('.wmd-headline');
+    var dc  = card.querySelector('.wmd-exp-desc');
+    var lbl = card.querySelector('.wmd-spotlight-label');
+    var qt  = card.querySelector('.wmd-spotlight-quote');
+    modal.querySelector('.wmd-modal-headline').textContent        = hl  ? hl.textContent  : '';
+    modal.querySelector('.wmd-modal-desc').textContent            = dc  ? dc.textContent  : '';
+    modal.querySelector('.wmd-modal-spotlight-label').textContent = lbl ? lbl.textContent : '';
+    modal.querySelector('.wmd-modal-spotlight-quote').textContent = qt  ? qt.textContent  : '';
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideWmdModal() {
+    var modal = document.getElementById('wmd-modal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
   /* ── Wire up buttons ────────────────────────────────────────── */
   var pendingExpand = null; // track the one in-flight delayed expansion
 
@@ -102,6 +151,12 @@
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
+
+      // On mobile, show a popup instead of the expand animation
+      if (window.innerWidth <= 768) {
+        showWmdModal(card);
+        return;
+      }
 
       // Always cancel any previously queued expand so rapid clicks
       // never stack up multiple expansions.
