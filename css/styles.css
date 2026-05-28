@@ -682,6 +682,7 @@ body:not(.about-page):not(.about2-page):not(.contact-page):not(.wte-page):not(.c
   border-radius: var(--radius);
   overflow: hidden;
   scroll-snap-align: start;
+  transform: translateZ(0);
 }
 
 
