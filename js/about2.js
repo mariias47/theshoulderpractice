@@ -149,27 +149,28 @@
     var btn = card.querySelector('.wmd-toggle');
     if (!btn) return;
 
-    // On mobile, use touchend directly to avoid the track's touch-scroll
-    // handler eating the tap before `click` can fire.
-    var btnTouchMoved = false;
-    btn.addEventListener('touchstart', function () {
-      btnTouchMoved = false;
-    }, { passive: true });
-    btn.addEventListener('touchmove', function () {
-      btnTouchMoved = true;
+    // On mobile, use touchend with a distance threshold to distinguish a
+    // tap from a scroll. The track's passive touchmove listener can cause
+    // the browser to not fire click after a touch, so we bypass click entirely.
+    var btnTouchStartX = 0, btnTouchStartY = 0;
+    btn.addEventListener('touchstart', function (e) {
+      btnTouchStartX = e.touches[0].clientX;
+      btnTouchStartY = e.touches[0].clientY;
     }, { passive: true });
     btn.addEventListener('touchend', function (e) {
-      if (!btnTouchMoved && window.innerWidth <= 768) {
+      if (window.innerWidth > 768) return;
+      var dx = e.changedTouches[0].clientX - btnTouchStartX;
+      var dy = e.changedTouches[0].clientY - btnTouchStartY;
+      if (Math.sqrt(dx * dx + dy * dy) <= 10) {
         e.preventDefault(); // block the subsequent synthetic click
         showWmdModal(card);
       }
-      btnTouchMoved = false;
     }, { passive: false });
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
 
-      // On mobile click is handled by touchend above; skip it here
+      // On mobile the modal is opened via touchend above
       if (window.innerWidth <= 768) return;
 
       // Always cancel any previously queued expand so rapid clicks
