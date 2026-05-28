@@ -683,6 +683,8 @@ body:not(.about-page):not(.about2-page):not(.contact-page):not(.wte-page):not(.c
   overflow: hidden;
   scroll-snap-align: start;
   transform: translateZ(0);
+  background-size: cover;
+  background-position: center;
 }
 
 
