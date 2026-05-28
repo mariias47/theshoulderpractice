@@ -3500,3 +3500,102 @@ body.conditions-page {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   PERFORMANCE FIXES
+   Bug 1: Elements invisible on load (opacity:0 not cleared for
+          in-viewport elements until IntersectionObserver fires)
+   Bug 2: Scroll lag (no rAF throttling on scroll handlers)
+   Bug 3: Images disappear on scroll (missing GPU layer promotion)
+   Bug 4: Full-page repaints on scroll (no paint containment)
+════════════════════════════════════════════════════════════════ */
+
+/* ── GPU layer promotion: prevents images from disappearing on scroll ── */
+.team-photo img,
+.loc-card > img,
+.exp-bg,
+.hero-bg > video {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ── Promote card containers to own compositing layers ── */
+.team-card,
+.loc-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ── Frosted glass overlays: isolate stacking context ── */
+.team-info,
+.loc-overlay,
+.loc-card-glass,
+.hero-overlay {
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+/* ── Marquee animation: ensure it runs on compositor thread ── */
+.featured-logos {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ── Paint containment: prevents full-page repaints during scroll ── */
+.home-sheet,
+.review,
+.footer,
+.expertise {
+  contain: layout paint;
+}
+
+/* ── Heading blur-in: reduce blur radius (8px is expensive), add will-change ── */
+h1.heading-blur-in,
+h2.heading-blur-in,
+h3.heading-blur-in {
+  filter: blur(4px);
+  transition: opacity 0.6s ease-out, filter 0.6s ease-out;
+  will-change: opacity, filter;
+}
+
+h1.heading-blur-in.visible,
+h2.heading-blur-in.visible,
+h3.heading-blur-in.visible {
+  will-change: auto;
+}
+
+/* ── Scroll-reveal: will-change before, removed after animation ── */
+.scroll-reveal {
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.visible {
+  will-change: auto;
+}
+
+/* ── Service and value cards: will-change during animation only ── */
+.service {
+  will-change: opacity, transform;
+}
+
+.service.visible {
+  will-change: auto;
+}
+
+.value-card {
+  will-change: opacity, transform;
+}
+
+.value-card.visible {
+  will-change: auto;
+}
+
+/* ── Navbar: promote to own layer when frosted glass is active ── */
+.navbar.scrolled {
+  transform: translateZ(0);
+  isolation: isolate;
+}
