@@ -149,14 +149,28 @@
     var btn = card.querySelector('.wmd-toggle');
     if (!btn) return;
 
+    // On mobile, use touchend directly to avoid the track's touch-scroll
+    // handler eating the tap before `click` can fire.
+    var btnTouchMoved = false;
+    btn.addEventListener('touchstart', function () {
+      btnTouchMoved = false;
+    }, { passive: true });
+    btn.addEventListener('touchmove', function () {
+      btnTouchMoved = true;
+    }, { passive: true });
+    btn.addEventListener('touchend', function (e) {
+      if (!btnTouchMoved && window.innerWidth <= 768) {
+        e.preventDefault(); // block the subsequent synthetic click
+        showWmdModal(card);
+      }
+      btnTouchMoved = false;
+    }, { passive: false });
+
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
 
-      // On mobile, show a popup instead of the expand animation
-      if (window.innerWidth <= 768) {
-        showWmdModal(card);
-        return;
-      }
+      // On mobile click is handled by touchend above; skip it here
+      if (window.innerWidth <= 768) return;
 
       // Always cancel any previously queued expand so rapid clicks
       // never stack up multiple expansions.
